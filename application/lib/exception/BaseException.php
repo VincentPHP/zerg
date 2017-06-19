@@ -8,25 +8,18 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-namespace app\api\controller\v1;
+namespace app\lib\exception;
 
-use app\api\model\Banner as BannerModel;
-use app\api\validate\IDMustBePostiveInt;
-
-class Banner
+class BaseException
 {
-    /**
-     * 获取指定ID的Banner信息
-     * @url  /banner/:id
-     * @id   是Banner的ID号
-     * @http GET
-     */
-    public function getBanner($id)
-    {
-        (new IDMustBePostiveInt())->goCheck();
+    //HTTP 状态码 404,200;
+    public $code = 400;
 
-        $banner = BannerModel::getBannerID($id);
+    //错误具体信息
+    public $msg = '参数错误';
 
-        return $banner;
-    }
+    //自定义错误码
+    public $errorCode = '10000';
+
+
 }

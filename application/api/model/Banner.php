@@ -8,25 +8,25 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-namespace app\api\controller\v1;
-
-use app\api\model\Banner as BannerModel;
-use app\api\validate\IDMustBePostiveInt;
+namespace app\api\model;
 
 class Banner
 {
-    /**
-     * 获取指定ID的Banner信息
-     * @url  /banner/:id
-     * @id   是Banner的ID号
-     * @http GET
-     */
-    public function getBanner($id)
+
+    public static function getBannerID()
     {
-        (new IDMustBePostiveInt())->goCheck();
+        //TODO:根据Banner ID号 获取Banner信息
 
-        $banner = BannerModel::getBannerID($id);
+        try
+        {
+            1/0;
+        }
+        catch(Exception $ex)
+        {
+            //TODO: 可以记录日志
+            throw $ex;
+        }
 
-        return $banner;
+        return "This is banner info";
     }
 }
