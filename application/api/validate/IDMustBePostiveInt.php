@@ -12,7 +12,9 @@ namespace app\api\validate;
 
 class IDMustBePostiveInt extends BaseValidate
 {
-    protected $rule = ['id'=>'require|isPositiveInteger',];
+    protected $rule = [
+            'id'  => 'require|isPositiveInteger',
+        ];
 
     protected function isPositiveInteger($value, $rule='', $data='', $field='')
     {
@@ -22,7 +24,7 @@ class IDMustBePostiveInt extends BaseValidate
         }
         else
         {
-            return $field.":必须是正整数！";
+            return $field."必须是正整数";
         }
     }
 }

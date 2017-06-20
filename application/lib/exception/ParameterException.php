@@ -8,15 +8,12 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-namespace app\api\model;
+namespace app\lib\exception;
 
-use think\Db;
-
-class Banner
+class ParameterException extends BaseException
 {
-    public static function getBannerID($id)
-    {
-        $result = Db::query('select * from banner_item where banner_id=?', [$id]);
-        return $result;
-    }
+    public $code = 400;
+    public $msg  = '参数错误';
+    public $errorCode = 10000;
+
 }
