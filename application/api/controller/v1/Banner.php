@@ -27,8 +27,8 @@ class Banner
         //AOP 面向切面编程
         (new IDMustBePostiveInt())->goCheck();
 
-        $banner = BannerModel::with('items')->find($id);
-//        $banner = BannerModel::getBannerByID($id);
+        //获取数据
+        $banner = BannerModel::getBannerByID($id);
 
         //抛出异常
         if(!$banner)

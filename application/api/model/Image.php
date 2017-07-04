@@ -12,19 +12,10 @@ namespace app\api\model;
 
 use think\Model;
 
-class BannerItem extends Model
+class Image extends Model
 {
     /**
      * @var array 隐藏指定字段
      */
-    protected $hidden = ['id','img_id','banner_id','update_time','delete_time'];
-
-    /**
-     * 关联模型(一对多关联）
-     * @return bject 关联模型数据对象
-     */
-    public function img()
-    {
-        return $this->belongsTo('Image','img_id','id');
-    }
+    protected $hidden =['id','from','delete_time','update_time'];
 }
