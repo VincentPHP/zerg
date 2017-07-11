@@ -10,9 +10,7 @@
 
 namespace app\api\model;
 
-use think\Model;
-
-class Banner extends Model
+class Banner extends BaseModel
 {
     /**
      * @var array 隐藏指定字段

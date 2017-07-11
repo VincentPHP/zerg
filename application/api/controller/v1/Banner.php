@@ -36,8 +36,6 @@ class Banner
             throw  new BannerMissException();
         }
 
-        $conf = config('setting.img_frefix');
-
         return $banner;
     }
 }

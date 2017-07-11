@@ -8,9 +8,18 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-/**
- * 自定义配置文件
- */
-return [
-    'img_frefix'=>'http://z.cn/images',
-];
+namespace app\api\controller\v2;
+
+class Banner
+{
+    /**
+     * 获取指定ID的Banner信息
+     * @url  /banner/:id
+     * @id   是Banner的ID号
+     * @http GET
+     */
+    public function getBanner($id)
+    {
+        return "This is V2 Version";
+    }
+}

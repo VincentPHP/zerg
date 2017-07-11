@@ -10,25 +10,29 @@
 
 namespace app\api\model;
 
+use think\Model;
+
 /**
- * image表模型
+ * 基类模型
  * @package app\api\model
  */
-class Image extends BaseModel
+class BaseModel extends Model
 {
-    /**
-     * @var array 隐藏指定字段
-     */
-    protected $hidden =['id','from','delete_time','update_time'];
-
     /**
      * 定义读取器(get+表名+Attr)驼峰命名
      * @param  $value  接收到的数据
      * @param  $data   查询数据库得到的数据
      * @return string  拼接好的图片完整地址
      */
-    public function getUrlAttr($value, $data)
+    protected function prefixImgUrl($value, $data)
     {
-        return $this->prefixImgUrl($value, $data);
+        $finalUrl = $value;
+
+        if($data['from'] == 1)
+        {
+            $finalUrl = config('setting.img_frefix').$value;
+        }
+
+        return $finalUrl;
     }
 }
