@@ -10,6 +10,10 @@
 
 namespace app\api\controller\v2;
 
+/**
+ * Banner 控制器
+ * @package app\api\controller\v2
+ */
 class Banner
 {
     /**
