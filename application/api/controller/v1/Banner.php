@@ -14,6 +14,10 @@ use app\api\model\Banner as BannerModel;
 use app\api\validate\IDMustBePostiveInt;
 use app\lib\exception\BannerMissException;
 
+/**
+ * Banner 控制器
+ * @package app\api\controller\v1
+ */
 class Banner
 {
     /**
