@@ -10,21 +10,19 @@
 
 namespace app\api\validate;
 
+/**
+ * IDMustBePostiveInt 数据验证拦截类
+ * @package app\api\validate
+ */
 class IDMustBePostiveInt extends BaseValidate
 {
+    //验证字段及验证方法
     protected $rule = [
-            'id'  => 'require|isPositiveInteger',
+            'id' => 'require|isPositiveInteger',
         ];
 
-    protected function isPositiveInteger($value, $rule='', $data='', $field='')
-    {
-        if(is_numeric($value) && is_int($value + 0) && ($value + 0) > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return $field."必须是正整数";
-        }
-    }
+    //验证不通过提示信息
+    protected $message = [
+        'id' => 'id必须是正整数',
+    ];
 }
