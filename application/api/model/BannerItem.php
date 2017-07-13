@@ -10,16 +10,23 @@
 
 namespace app\api\model;
 
+/**
+ * BannerItem 模型
+ * @package app\api\model
+ */
 class BannerItem extends BaseModel
 {
     /**
      * @var array 隐藏指定字段
      */
-    protected $hidden = ['id','img_id','banner_id','update_time','delete_time'];
+    protected $hidden = [
+        'id','img_id','banner_id',
+        'update_time','delete_time'];
+
 
     /**
      * 关联模型(一对多关联）
-     * @return bject 关联模型数据对象
+     * @return bject Image模型对象
      */
     public function img()
     {

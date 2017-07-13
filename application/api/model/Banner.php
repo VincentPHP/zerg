@@ -10,6 +10,10 @@
 
 namespace app\api\model;
 
+/**
+ * Banner 模型
+ * @package app\api\model
+ */
 class Banner extends BaseModel
 {
     /**
@@ -17,22 +21,25 @@ class Banner extends BaseModel
      */
     protected $hidden = ['update_time','delete_time'];
 
+
     /**
-     * 关联模型
-     * @return object 关联模型数据对象
+     * 关联BannerItem模型
+     * @return object BannerItem模型对象
      */
     public function items()
     {
         return $this->hasMany('BannerItem', 'banner_id', 'id');
     }
 
+
     /**
-     * 获取指定Banner ID的数据
+     * 获取指定Banner数据
      * @param $id 需要获取的Banner ID
-     * @return object 关联模型对象
+     * @return false | array 模型组合的数据
      */
     public static function getBannerByID($id)
     {
+        //关联items模型方法
         $banner = self::with(['items', 'items.img'])->find($id);
 
         return $banner;

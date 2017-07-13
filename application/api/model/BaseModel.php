@@ -13,23 +13,26 @@ namespace app\api\model;
 use think\Model;
 
 /**
- * 基类模型
+ * BaseModel 基类模型
  * @package app\api\model
  */
 class BaseModel extends Model
 {
     /**
-     * 定义读取器(get+表名+Attr)驼峰命名
+     * 定义读取器
      * @param  $value  接收到的数据
      * @param  $data   查询数据库得到的数据
      * @return string  拼接好的图片完整地址
      */
     protected function prefixImgUrl($value, $data)
     {
+        //获取需要组合URL
         $finalUrl = $value;
 
+        //如果是本地图片则组合路径
         if($data['from'] == 1)
         {
+            //预设网址+Url字段数据
             $finalUrl = config('setting.img_frefix').$value;
         }
 

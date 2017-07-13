@@ -19,7 +19,8 @@ class Image extends BaseModel
     /**
      * @var array 隐藏指定字段
      */
-    protected $hidden =['id','from','delete_time','update_time'];
+    protected $hidden =['id', 'from', 'delete_time', 'update_time'];
+
 
     /**
      * 定义读取器(get+表名+Attr)驼峰命名
