@@ -12,7 +12,7 @@ namespace app\api\controller\v1;
 
 use app\api\model\Banner as BannerModel;
 use app\api\validate\IDMustBePostiveInt;
-use app\lib\exception\BannerMissException;
+use app\lib\exception\BannerException;
 
 /**
  * Banner 控制器
@@ -23,21 +23,23 @@ class Banner
     /**
      * 获取指定ID的Banner信息
      * @url  /banner/:id
-     * @id   是Banner的ID号
      * @http GET
+     * @id   Banner的ID号
+     * @return array|false 一组模型对象
+     * @throws BannerException Banner自定义异常
      */
     public function getBanner($id)
     {
         //AOP 面向切面编程
         (new IDMustBePostiveInt())->goCheck();
 
-        //获取数据
+        //获取模型返回数组
         $banner = BannerModel::getBannerByID($id);
 
         //抛出异常
         if(!$banner)
         {
-            throw  new BannerMissException();
+            throw new BannerException();
         }
 
         return $banner;

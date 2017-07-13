@@ -19,10 +19,10 @@ class Banner
     /**
      * 获取指定ID的Banner信息
      * @url  /banner/:id
-     * @id   是Banner的ID号
      * @http GET
+     * @id   是Banner的ID号
      */
-    public function getBanner($id)
+    public function getBanner()
     {
         return "This is V2 Version";
     }
