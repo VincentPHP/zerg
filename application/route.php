@@ -14,5 +14,11 @@ use think\Route;
 //Banner控制器 路由
 Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 
-//Theme控制器 路由
+//Theme控制器 获取主题信息 路由
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
+
+//Theme控制器 获取主题及商品列表 路由
+Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
+
+//获取商品信息 路由
+Route::get('api/:version/product/recent','api/:version.Product/getRecent');
