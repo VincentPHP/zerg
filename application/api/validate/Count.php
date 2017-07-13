@@ -9,9 +9,17 @@
  * +----------------------------------------------------------------*/
 
 namespace app\api\validate;
-use think\Validate;
 
-class TestValidate extends Validate
+/**
+ * Count 数值范围验证器
+ * @package app\api\validate
+ */
+class Count extends BaseValidate
 {
-    protected $rule = ['name'=>'require|max:10', 'email'=>'email'];
+    /**
+     * @var array 验证是否为正整数和是否在数值范围
+     */
+    protected $rule = [
+        'count' => 'isPositiveInteger|between:1,15',
+    ];
 }

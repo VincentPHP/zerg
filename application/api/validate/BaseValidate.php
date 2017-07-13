@@ -29,10 +29,13 @@ class BaseValidate extends Validate
     {
         //获取Http传入参数
         $request = Request::instance();
+
         $params  = $request->param();
 
         //对这些参数进行检验
         $result = $this->batch()->check($params);
+
+        //抛出异常
         if(!$result)
         {
             throw new ParameterException(['msg'=>$this->error]);
@@ -49,7 +52,7 @@ class BaseValidate extends Validate
      * @param string $rule
      * @param string $data
      * @param string $field 验证的字段
-     * @return bool|string
+     * @return bool false OR true
      */
     protected function isPositiveInteger($value, $rule='', $data='', $field='')
     {

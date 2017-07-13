@@ -11,7 +11,7 @@
 namespace app\api\validate;
 
 /**
- * IDCollection 数据验证拦截类
+ * IDCollection ID验证器
  * @package app\api\validate
  */
 class IDCollection extends BaseValidate

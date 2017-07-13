@@ -11,7 +11,7 @@
 namespace app\api\validate;
 
 /**
- * IDMustBePostiveInt 数据验证拦截类
+ * IDMustBePostiveInt ID正整数验证器
  * @package app\api\validate
  */
 class IDMustBePostiveInt extends BaseValidate
