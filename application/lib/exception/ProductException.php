@@ -11,18 +11,17 @@
 namespace app\lib\exception;
 
 /**
- * ParameterException 通用错误异常类
+ * ProductException 商品异常类
  * @package app\lib\exception
  */
-class ParameterException extends BaseException
+class ProductException extends BaseException
 {
     //状态码
-    public $code = 400;
+    public $code = 404;
 
     //错误提示信息
-    public $msg  = '参数错误';
+    public $msg  = '指定商品不存在，请检查参数';
 
     //错误码
-    public $errorCode = 10000;
-
+    public $errorCode = 40000;
 }

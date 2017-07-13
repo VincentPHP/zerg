@@ -10,11 +10,18 @@
 
 namespace app\lib\exception;
 
-class BannerMissException extends BaseException
+/**
+ * ThemeException 主题异常类
+ * @package app\lib\exception
+ */
+class ThemeException extends BaseException
 {
+    //状态码
     public $code = 404;
-    public $msg  = '请求Banner不存在';
-    public $errorCode = 40000;
 
+    //错误提示信息
+    public $msg  = '指定主题不存在，请检查主题ID';
 
+    //错误码
+    public $errorCode = 30000;
 }

@@ -11,18 +11,18 @@
 namespace app\lib\exception;
 
 /**
- * ParameterException 通用错误异常类
+ * BannerException Banner异常类
  * @package app\lib\exception
  */
-class ParameterException extends BaseException
+class BannerException extends BaseException
 {
     //状态码
-    public $code = 400;
+    public $code = 404;
 
-    //错误提示信息
-    public $msg  = '参数错误';
+    //错误具体信息
+    public $msg  = '请求Banner不存在';
 
     //错误码
-    public $errorCode = 10000;
+    public $errorCode = 20000;
 
 }

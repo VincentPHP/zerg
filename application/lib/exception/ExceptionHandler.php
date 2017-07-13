@@ -14,14 +14,28 @@ use think\exception\Handle;
 use think\Log;
 use think\Request;
 
+/**
+ * ExceptionHandler 服务器异常类
+ * @package app\lib\exception
+ */
 class ExceptionHandler extends Handle
 {
+    //状态码
     private $code;
+
+    //错误提示信息
     private $msg;
+
+    //错误码
     private $errorCode;
 
     //需要返回客户端当前请求路径
 
+    /**
+     * 将异常抛出及设置服务器异常提示
+     * @param \Exception $e 全局异常类
+     * @return json 异常提示信息
+     */
     public function render(\Exception $e)
     {
         if($e instanceof BaseException)
@@ -61,6 +75,10 @@ class ExceptionHandler extends Handle
         return json($result, $this->code);
     }
 
+    /**
+     * 将错误信息写入日志
+     * @param \Exception $e 服务器端的错误信息
+     */
     private function recordErrorLog(\Exception $e)
     {
         Log::init([
