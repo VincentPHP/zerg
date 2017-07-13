@@ -1,0 +1,7 @@
+http://z.cn/api/v1/banner/1                 获取Banner
+
+http://z.cn/api/v1/theme/1                  获取主题及商品
+
+http://z.cn/api/v1/theme?ids=1,2,3　         获取主题数据
+
+http://z.cn/api/v1/product/recent?count=3    获取商品数据
