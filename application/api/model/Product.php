@@ -48,4 +48,18 @@ class Product extends BaseModel
 
         return $products;
     }
+
+
+    /**
+     * 获取分类所属商品
+     * @param $categoryID 分类ID
+     * @return false|Collection  商品模型对象
+     */
+    public static function getProductByCategoryID($categoryID)
+    {
+        //根据分类ID获取下属商品
+        $product = self::where('category_id','=',$categoryID)->select();
+
+        return $product;
+    }
 }
