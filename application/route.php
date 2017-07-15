@@ -22,3 +22,10 @@ Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 
 //获取商品信息 路由
 Route::get('api/:version/product/recent','api/:version.Product/getRecent');
+
+//获取分类下商品 路由
+Route::get('api/:version/product/by_category','api/:version.Product/getAllInCategory');
+
+//获取分类信息 路由
+Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
+
