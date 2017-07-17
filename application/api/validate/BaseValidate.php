@@ -65,4 +65,25 @@ class BaseValidate extends Validate
             return false;
         }
     }
+
+
+    /**
+     * 判断参数是否为空
+     * @param $value 参数
+     * @param string $rule
+     * @param string $data
+     * @param string $field
+     * @return bool false OR true
+     */
+    protected function inNotEmpty($value, $rule='', $data='', $field='')
+    {
+        if(empty($value))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }
