@@ -29,3 +29,4 @@ Route::get('api/:version/product/by_category','api/:version.Product/getAllInCate
 //获取分类信息 路由
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
+Route::post('api/:version/token/user','api/:version.Token/getToken');
