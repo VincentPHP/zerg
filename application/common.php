@@ -42,3 +42,29 @@ function curl_get($url, &$httpCode=0)
 
     return $file_contents;
 }
+
+
+/**
+ * 随机获取字符串
+ * @param $length 字符串长度
+ * @return null|string 返回生成的字符串
+ */
+function getRandChar($length)
+{
+    //自定义字符串
+    $str = 'ZXCVBNMASDFGHJKLPOIUYTREWQasdfghjklzxcvbnmqwertyuiop123987654';
+
+    //定义空字符串
+    $randChar = null;
+
+    //获取字符串长度
+    $max = strlen($str) - 1;
+
+    //截取字符串
+    for($i=0; $i<$length; $i++)
+    {
+        $randChar .= $str[rand(0, $max)];
+    }
+
+    return $randChar;
+}
