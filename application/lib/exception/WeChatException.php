@@ -23,5 +23,5 @@ class WeChatException extends BaseException
     public $msg   = '微信接口调用失败';
 
     //错误码
-    public $errorCode = 999;
+    public $errorCode = 60000;
 }
