@@ -8,14 +8,20 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-namespace app\api\model;
+namespace app\lib\exception;
 
-class User extends BaseModel
+/**
+ * TokenException Token异常类
+ * @package app\lib\exception
+ */
+class TokenException extends BaseException
 {
+    //状态码
+    public $code = 401;
 
-    public static function getByOpenID($openID)
-    {
-        $user = self::where('openid','=', $openID)->find();
-        return $user;
-    }
+    //错误提示信息
+    public $msg  = 'Token已经过期或无效Token';
+
+    //错误码
+    public $errorCode = 10001;
 }

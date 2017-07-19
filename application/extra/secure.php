@@ -8,14 +8,10 @@
  * |   Copyright (C) 2015-2020, www.aqphp.com All Rights Reserved.
  * +----------------------------------------------------------------*/
 
-namespace app\api\model;
-
-class User extends BaseModel
-{
-
-    public static function getByOpenID($openID)
-    {
-        $user = self::where('openid','=', $openID)->find();
-        return $user;
-    }
-}
+/**
+ * Token 自定义配置文件
+ */
+return [
+    //salt 盐
+    'token_salt' => 'HHsTieBU377mJtKr',
+];

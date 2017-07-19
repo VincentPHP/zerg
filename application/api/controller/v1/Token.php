@@ -13,16 +13,28 @@ namespace app\api\controller\v1;
 use app\api\service\UserToken;
 use app\api\validate\TokenGet;
 
+/**
+ * Token 控制器
+ * @package app\api\controller\v1
+ */
 class Token
 {
+    /**
+     * 获取Token
+     * @param string $code 客户端码
+     * @return array Token令牌
+     */
     public function getToken($code='')
     {
-//       (new TokenGet())->goCheck();
+        //数据验证
+        (new TokenGet())->goCheck();
 
+        //调用Service 实现业务
         $result = new UserToken($code);
 
+        //接受Token
         $token = $result->get();
 
-        return $token;
+        return ['token' => $token];
     }
 }

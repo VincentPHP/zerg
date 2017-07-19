@@ -75,15 +75,8 @@ class BaseValidate extends Validate
      * @param string $field
      * @return bool false OR true
      */
-    protected function inNotEmpty($value, $rule='', $data='', $field='')
+    protected function isNotEmpty($value, $rule='', $data='', $field='')
     {
-        if(empty($value))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !empty($value) ? true : false;
     }
 }
