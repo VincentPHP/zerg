@@ -79,4 +79,49 @@ class BaseValidate extends Validate
     {
         return !empty($value) ? true : false;
     }
+
+
+    /**
+     * 验证是否是手机号
+     * @param $value 需要验证的手机号
+     * @return bool true or false
+     */
+    protected function isMobile($value)
+    {
+        $rule = '/^(1(([35][0-9])|(47)|[8][0126789]))\d{8}$/';
+
+        $result = preg_match($rule, $value);
+
+        return $result ? true : false;
+    }
+
+
+    /**
+     * 拦截请求中多余的参数
+     * @param $arrays  请求的参数
+     * @return array   拦截后的数组
+     * @throws ParameterException
+     */
+    public function getDataByRule($arrays)
+    {
+        if(
+            array_key_exists('uid',$arrays) or
+            array_key_exists('user_id', $arrays)
+        )
+        {
+            throw new ParameterException([
+                'msg' => '参数中包含有非法的参数名user_id或uid',
+            ]);
+        }
+
+        $newArray = [];
+
+        //循环获取相应数据
+        foreach($this->rule as $key => $value)
+        {
+            $newArray[$key] = $arrays[$key];
+        }
+
+        return $newArray;
+    }
 }
