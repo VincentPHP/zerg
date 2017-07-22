@@ -59,9 +59,7 @@ class Theme extends BaseModel
      */
     public static function getThemeByIds($ids)
     {
-        $theme = self::with(['topicImg','headImg'])->select($ids);
-
-        return $theme;
+        return self::with(['topicImg','headImg'])->select($ids);
     }
 
 
@@ -72,8 +70,6 @@ class Theme extends BaseModel
      */
     public static function getThemeWithProduct($id)
     {
-        $theme = self::with(['products','topicImg','headImg'])->find($id);
-
-        return $theme;
+        return self::with(['products','topicImg','headImg'])->find($id);
     }
 }

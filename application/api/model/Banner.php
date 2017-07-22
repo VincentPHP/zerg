@@ -40,8 +40,6 @@ class Banner extends BaseModel
     public static function getBannerByID($id)
     {
         //关联items模型方法
-        $banner = self::with(['items', 'items.img'])->find($id);
-
-        return $banner;
+        return self::with(['items', 'items.img'])->find($id);
     }
 }

@@ -10,25 +10,7 @@
 
 namespace app\api\model;
 
-/**
- * Category 分类模型
- * @package app\api\model
- */
-class Category extends BaseModel
+class UserAddress extends BaseModel
 {
-    /**
-     * @var array 指定隐藏的字段
-     */
-    protected $hidden =[
-        'update_time','delete_time','create_time'
-    ];
-
-    /**
-     * 关联Image模型 获得分类图片
-     * @return object 关联Image模型对象
-     */
-    public function img()
-    {
-        return $this->belongsTo('Image','topic_img_id','id');
-    }
+    protected $hidden = ['delete_time','update_time'];
 }

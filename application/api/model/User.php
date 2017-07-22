@@ -10,12 +10,30 @@
 
 namespace app\api\model;
 
+/**
+ * User 模型
+ * @package app\api\model
+ */
 class User extends BaseModel
 {
+    /**
+     * 关联用户地址模型
+     * @return object 用户地址模型
+     */
+    public static function address()
+    {
+        return self::hasOne('UserAddress','user_id', 'id');
+    }
 
+
+    /**
+     * 获取用户数据
+     * @param $openID 用户ID
+     * @return false|array 用户信息
+     */
     public static function getByOpenID($openID)
     {
-        $user = self::where('openid','=', $openID)->find();
-        return $user;
+        //获取一条用户信息
+        return self::where('openid', '=', $openID)->find();
     }
 }

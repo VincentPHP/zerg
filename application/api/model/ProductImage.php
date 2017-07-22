@@ -11,24 +11,23 @@
 namespace app\api\model;
 
 /**
- * Category 分类模型
+ * ProductImage 商品图片模型
  * @package app\api\model
  */
-class Category extends BaseModel
+class ProductImage extends BaseModel
 {
     /**
-     * @var array 指定隐藏的字段
+     * @var array 隐藏指定字段
      */
-    protected $hidden =[
-        'update_time','delete_time','create_time'
-    ];
+    protected $hidden = ['img_id','delete_time','product_id'];
+
 
     /**
-     * 关联Image模型 获得分类图片
-     * @return object 关联Image模型对象
+     * 关联模型 获取图片路径
+     * @return object 图片模型对象
      */
-    public function img()
+    public function imgUrl()
     {
-        return $this->belongsTo('Image','topic_img_id','id');
+        return $this->belongsTo('Image','img_id','id');
     }
 }

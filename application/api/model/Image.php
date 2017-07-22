@@ -11,7 +11,7 @@
 namespace app\api\model;
 
 /**
- * image表模型
+ * Image 图片模型
  * @package app\api\model
  */
 class Image extends BaseModel
