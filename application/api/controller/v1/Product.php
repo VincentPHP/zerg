@@ -76,4 +76,30 @@ class Product
 
         return $products;
     }
+
+
+    /**
+     * 获取一个商品 完整数据
+     * @url /product/1
+     * @http GET
+     * @param $id 商品ID
+     * @return false|array 商品信息
+     * @throws ProductException 自定义商品异常
+     */
+    public function getOne($id)
+    {
+        //验证数据
+        (new IDMustBePostiveInt())->goCheck();
+
+        //获取商品信息
+        $product = ProductModel::getProductDetail($id);
+
+        //抛出异常
+        if(!$product)
+        {
+            throw new ProductException();
+        }
+
+        return $product;
+    }
 }
