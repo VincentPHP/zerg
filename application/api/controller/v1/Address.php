@@ -13,11 +13,54 @@ namespace app\api\controller\v1;
 use app\api\service\Token as TokenService;
 use app\api\validate\AddressNew;
 use app\api\model\User as UserModel;
+use app\lib\enum\ScopeEnum;
+use app\lib\exception\ForbiddenException;
+use app\lib\exception\TokenException;
 use app\lib\success\SuccessMessage;
 use app\lib\exception\UserException;
+use think\Controller;
 
-class Address
+/**
+ * Address 控制器
+ * @package app\api\controller\v1
+ */
+class Address extends Controller
 {
+    /**
+     * 访问某个方法前先执行前置方法
+     * @var array 前置方法=>只有=>触发前置操作的方法
+     */
+    protected $beforeActionList = [
+        'checkPrimaryScope' => ['only' => 'createOrUpdateAddress']
+    ];
+
+
+    /**
+     * 前置方法 检测作用域权限
+     * @return bool true or exception
+     * @throws ForbiddenException 前置方法异常类
+     * @throws TokenException  Token异常类
+     */
+    protected function checkPrimaryScope()
+    {
+        //获取Token中的作用域
+        $scope = TokenService::getCurrentTokenVar('scope');
+
+        //抛出Token异常
+        if(!$scope) throw new TokenException();
+
+        //检验是否在作用域内
+        if($scope >= ScopeEnum::User)
+        {
+            return true;
+        }
+        else
+        {
+            //抛出前置方法异常
+            throw new ForbiddenException();
+        }
+    }
+
     /**
      * 创建或更新用户地址
      * @return SuccessMessage
@@ -64,6 +107,6 @@ class Address
             $user->address->save($dataArray);
         }
 
-        return new SuccessMessage();
+        return json(new SuccessMessage(),'201');
     }
 }

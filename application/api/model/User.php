@@ -20,7 +20,7 @@ class User extends BaseModel
      * 关联用户地址模型
      * @return object 用户地址模型
      */
-    public static function address()
+    public function address()
     {
         return self::hasOne('UserAddress','user_id', 'id');
     }
