@@ -81,7 +81,10 @@ class Token
     }
 
 
-
+    /**
+     * 获取用户ID
+     * @return String 用户ID
+     */
     public static function getCurrentUid()
     {
         //获取Token
