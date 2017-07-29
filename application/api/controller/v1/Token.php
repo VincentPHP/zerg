@@ -27,7 +27,7 @@ class Token
     public function getToken($code='')
     {
         //数据验证
-//        (new TokenGet())->goCheck();
+        (new TokenGet())->goCheck();
 
         //调用Service 实现业务
         $result = new UserToken($code);
