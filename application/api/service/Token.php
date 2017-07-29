@@ -10,9 +10,12 @@
 
 namespace app\api\service;
 
+use app\lib\enum\ScopeEnum;
+use app\lib\exception\ForbiddenException;
 use app\lib\exception\TokenException;
 use think\Cache;
 use think\Request;
+
 
 /**
  * Token Service基类
@@ -89,5 +92,59 @@ class Token
     {
         //获取Token
         return self::getCurrentTokenVar('uid');
+    }
+
+
+    /**
+     * 前置方法 权限作用域检测  允许用户以上级别访问
+     * @return bool true or exception
+     * @throws ForbiddenException 权限异常类
+     * @throws TokenException  Token异常类
+     */
+    public static function needPrimaryScope()
+    {
+        //获取Token中的作用域
+        $scope = self::getCurrentTokenVar('scope');
+
+        //抛出Token异常
+        if (!$scope) throw new TokenException();
+
+        //检验是否在作用域内
+        if ($scope >= ScopeEnum::User)
+        {
+            return true;
+        }
+        else
+        {
+            //抛出前置方法异常
+            throw new ForbiddenException();
+        }
+    }
+
+
+    /**
+     * 前置方法 权限作用域检测 只允许用户方法
+     * @return bool true or exception
+     * @throws ForbiddenException 权限异常类
+     * @throws TokenException Token异常类
+     */
+    public static function needExclusiveScope()
+    {
+        //获取Token中的作用域
+        $scope = self::getCurrentTokenVar('scope');
+
+        //抛出Token异常
+        if(!$scope) throw new TokenException();
+
+        //判断是否符合权限作用域
+        if($scope == ScopeEnum::User)
+        {
+            return true;
+        }
+        else
+        {
+            //抛出权限异常
+            throw new ForbiddenException();
+        }
     }
 }
