@@ -49,4 +49,7 @@ Route::group('api/:version', function()
     //创建或更新地址
     Route::post('/address','api/:version.Address/createOrUpdateAddress');
 
+    //用户下单
+    Route::post('/order','api/:version.Order/placeOrder');
+
 });
