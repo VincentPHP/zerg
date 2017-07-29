@@ -1,6 +1,6 @@
-http://z.cn/api/v1/banner/1                 获取Banner    GET
+http://z.cn/api/v1/banner/1                  获取Banner    GET
 
-http://z.cn/api/v1/theme/1                  获取主题及商品  GET
+http://z.cn/api/v1/theme/1                   获取主题及商品  GET
 
 http://z.cn/api/v1/theme?ids=1,2,3　         获取主题数据   GET
 
@@ -10,4 +10,6 @@ http://z.cn/api/v1/product/11                获取一个商品完整数据   GE
 
 http://z.cn/api/v1/product/by_category?id=1  获取分类下商品  GET
 
-http://z.cn/api/v1/token/user                 获取token    POST
+http://z.cn/api/v1/token/user                获取token    POST
+
+http://z.cn/api/v1/order                     用户在客户端下订单 POST
