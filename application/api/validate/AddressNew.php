@@ -16,7 +16,9 @@ namespace app\api\validate;
  */
 class AddressNew extends BaseValidate
 {
-
+    /**
+     * @var array 验证是否为手机号与是否为空
+     */
     protected $rule = [
         'mobile'   => 'require|isMobile',
         'name'     => 'require|isNotEmpty',
