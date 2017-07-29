@@ -27,24 +27,28 @@ class BaseValidate extends Validate
      */
     public function goCheck()
     {
-        //获取Http传入参数
+        //初始化 Request
         $request = Request::instance();
 
+        //获取Http传入参数
         $params  = $request->param();
 
         //对这些参数进行检验
         $result = $this->batch()->check($params);
 
-        //抛出异常
         if(!$result)
         {
-            throw new ParameterException(['msg'=>$this->error]);
+            //抛出通用异常
+            throw new ParameterException([
+                'msg'=>$this->error,
+            ]);
         }
         else
         {
             return true;
         }
     }
+
 
     /**
      * 验证是否为正整数
