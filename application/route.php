@@ -52,4 +52,9 @@ Route::group('api/:version', function()
     //用户下单
     Route::post('/order','api/:version.Order/placeOrder');
 
+    //订单预支付
+    Route::post('/pay/pre_order','api/:version.Pay/getPreOrder');
+
+    //订单支付重定向通知
+    Route::post('/pay/notify', 'api/:version.Pay/receiveNotify');
 });
