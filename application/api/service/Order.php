@@ -218,6 +218,29 @@ class Order
 
 
     /**
+     * 支付独立库存检测
+     * @param $orderID 订单ID
+     * @return array 订单库存等信息
+     */
+    public function checkOrderStock($orderID)
+    {
+        $oProducts = OrderProduct::where('order_id','=', $orderID)
+                     ->select();
+
+        //订单数据
+        $this->oProducts = $oProducts;
+
+        //商品数据
+        $this->products = $this->getProductsByOrder($oProducts);
+
+        //组合订单状态
+        $status = $this->getOrderStatus();
+
+        return $status;
+    }
+
+
+    /**
      * 组合订单状态
      * @return array
      */
