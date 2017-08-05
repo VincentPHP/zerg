@@ -12,10 +12,10 @@ namespace app\api\service;
 
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\ForbiddenException;
+use app\lib\exception\ParameterException;
 use app\lib\exception\TokenException;
 use think\Cache;
 use think\Request;
-
 
 /**
  * Token Service基类
@@ -146,5 +146,28 @@ class Token
             //抛出权限异常
             throw new ForbiddenException();
         }
+    }
+
+
+    /**
+     * 检测传入的用户ID是否是当前用户UID
+     * @param $checkedUID 被检测的用户ID
+     * @return bool　true or false
+     * @throws ParameterException 通用异常
+     */
+    public static function isValidOperate($checkedUID)
+    {
+        if(!$checkedUID)
+        {
+            //如果被检测的UID为空　抛出通用异常
+            throw new ParameterException([
+                'msg' => '检查的UID时必须传入一个被检查的UID',
+                'errorCode' => 10004,
+            ]);
+        }
+
+        $currentOperateUID = self::getCurrentUid();
+
+        return $checkedUID == $currentOperateUID ? true : false;
     }
 }
