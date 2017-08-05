@@ -14,6 +14,7 @@ use app\api\model\User as UserModel;
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\TokenException;
 use app\lib\exception\WeChatException;
+use think\Exception;
 
 /**
  * UserToken Token Service业务层
@@ -51,6 +52,7 @@ class UserToken extends Token
     /**
      * 获取Token
      * @return string Token 令牌
+     * @throws Exception 全局异常
      */
     public function get()
     {
@@ -60,9 +62,9 @@ class UserToken extends Token
         //结构化数据
         $wxResult = json_decode($result, true);
 
-        //抛出异常
         if(empty($wxResult))
         {
+            //抛出服务器异常
             throw new Exception('获取session_key及openID时异常，微信内部错误');
         }
         else if(array_key_exists('errcode', $wxResult))
