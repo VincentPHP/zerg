@@ -50,7 +50,7 @@ class Pay extends BaseController
     /**
      * 异步通知地址
      */
-    public function receiveNotify()
+    public function redirectNotify()
     {
         //通知频率为15/15/30/180/1800/1800/1800/1800/3600, 单位:秒
         //特点:POST、Xml格式、不会携带参数
@@ -66,5 +66,24 @@ class Pay extends BaseController
         $notify = new WxNotify();
 
         $notify->Handle();
+    }
+
+
+    /**
+     * 转发微信支付重定向信息 进行XDebug调试
+     * @return mixed 回复微信订单状态
+     */
+    public function receiveNotify()
+    {
+        //获取微信发送的请求
+        $xmlData = file_get_contents('php://input');
+
+        //组合重定向地址+XDebug调试地址
+        $url = config('wx.pay_back_redirect').'?XDEBUG_SESSION_START=12350';
+
+        //转送POST请求
+        $result = curl_post_raw($url, $xmlData);
+
+        return $result;
     }
 }
