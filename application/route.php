@@ -52,9 +52,28 @@ Route::group('api/:version', function()
     //用户下单
     Route::post('/order','api/:version.Order/placeOrder');
 
-    //订单预支付
-    Route::post('/pay/pre_order','api/:version.Pay/getPreOrder');
+    //订单详细信息
+    Route::get('/order/:id', 'api/:version.Order/getDetail',[],['id'=>'\d+']);
 
-    //订单支付重定向通知
-    Route::post('/pay/notify', 'api/:version.Pay/receiveNotify');
+    //订单简要信息
+    Route::get('/order/by_user','api/:version.Order/getSummaryByUser');
+
+    //支付组
+    Route::group('/pay', function()
+    {
+        //订单预支付
+        Route::post('/pre_order','api/:version.Pay/getPreOrder');
+
+        //支付XDebug调试重定向
+        Route::post('/notify', 'api/:version.Pay/receiveNotify');
+
+        //订单支付重定向通知
+        Route::post('/re_notify', 'api/:version.Pay/redirectNotify');
+    });
+
+
+
+
+
+
 });
