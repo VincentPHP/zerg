@@ -9,7 +9,7 @@
  * +----------------------------------------------------------------*/
 
 /**
- * 微信类配置文件
+ * 微信配置文件
  */
 return [
 
@@ -21,4 +21,10 @@ return [
 
     //小程序Api
     'login_url'  => 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code',
+
+    //微信支付 XDebug重定向 调试地址
+    'pay_back_url' => 'https://www.aqphp.com/api/v1/pay/notify',
+
+    //微信支付重定向地址
+    'pay_back_redirect' => 'https://www.aqphp.com/api/v1/pay/re_notify',
 ];
