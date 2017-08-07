@@ -27,4 +27,52 @@ class Order extends BaseModel
      * @var bool true or false 开启或关闭
      */
     protected $autoWriteTimestamp = true;
+
+
+    /**
+     * snap_items字段 读取器
+     * @param $value 字段数据
+     * @return mixed|null 转换为JSON格式的数据
+     */
+    public function getSnapITemsAttr($value)
+    {
+        if(empty($value))
+        {
+            return null;
+        }
+
+        return json_decode($value);
+    }
+
+
+    /**
+     * snap_address字段 读取器
+     * @param $value 字段数据
+     * @return mixed|null 转换为JSON格式的数据
+     */
+    public function getSnapAddressAttr($value)
+    {
+        if(empty($value))
+        {
+            return null;
+        }
+
+        return json_decode($value);
+    }
+
+    
+    /**
+     * 分页获取用户订单数据
+     * @param $uid 用户ID
+     * @param int $page 分页数
+     * @param int $size 每页条数
+     * @return \think\Paginator
+     */
+    public static function getSummaryByUser($uid, $page=1, $size=15)
+    {
+        $pagingData = self::where('user_id', '=', $uid)
+                            ->paginate($size, true, ['page'=>$page]);
+
+        return $pagingData;
+    }
 }
