@@ -15,3 +15,5 @@ http://z.cn/api/v1/token/user                获取token    POST
 http://z.cn/api/v1/order                     用户在客户端下订单 POST  {"products":[{"product_id":1,"count":2},{"product_id":1,"count":2}]]}
 
 http://z.cn/api/v1/pay/pre_pay               用户对订单进行支付  POST id=1
+
+http://z.cn/api/v1/order/by_user?page=&size= 订单简要信息       GET
