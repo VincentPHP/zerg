@@ -11,9 +11,13 @@
 namespace app\api\controller\v1;
 
 use app\api\controller\BaseController;
+use app\api\validate\IDMustBePostiveInt;
 use app\api\validate\OrderPlace;
+use app\api\model\Order as OrderModel;
 use app\api\service\Token as TokenService;
 use app\api\service\Order as OrderService;
+use app\api\validate\PagingParameter;
+use app\lib\exception\OrderException;
 
 /**
  * Order 订单控制器
@@ -26,7 +30,8 @@ class Order extends BaseController
      * @var array 前置方法=>只有=>触发前置操作的方法
      */
     protected $beforeActionList = [
-        'checkExclusiveScope' => ['only' => 'placeOrder']
+        'checkExclusiveScope' => ['only' => 'placeOrder'],
+        'checkPrimaryScope'   => ['only' => 'getDetail,getSummaryByUser'],
     ];
 
 
@@ -68,5 +73,64 @@ class Order extends BaseController
         $status = $order->place($uid, $product);
 
         return $status;
+    }
+
+
+    /**
+     * 获取用户订单简要信息
+     * @param int $page 分页数
+     * @param int $size 每页条数
+     * @return array 组合后的订单数据
+     */
+    public function getSummaryByUser($page=1, $size=15)
+    {
+        //验证数据
+        (new PagingParameter())->goCheck();
+
+        //用户ID
+        $uid = TokenService::getCurrentUid();
+
+        //分页获取用户订单数据
+        $pagingOrders = OrderModel::getSummaryByUser($uid, $page, $size);
+
+        if($pagingOrders->isEmpty())
+        {
+            return [
+                'data' => [],
+                'current_page' => $pagingOrders->getCurrentPage(),
+            ];
+        }
+
+        //隐藏指定字段 转换为数组
+        $data = $pagingOrders->hidden(['snap_items','snap_address','prepay_id'])->toArray();
+
+        return [
+            'data' => $data,
+            'current_page' => $pagingOrders->getCurrentPage(),
+        ];
+    }
+
+
+    /**
+     * 获取订单完整信息
+     * @param $id 订单ID
+     * @return object 订单数据
+     * @throws OrderException 订单异常
+     */
+    public function getDetail($id)
+    {
+        //验证数据
+        (new IDMustBePostiveInt())->goCheck();
+
+        //获取订单数据
+        $orderDetail = OrderModel::get($id);
+
+        if(!$orderDetail)
+        {
+            //抛出订单异常
+            throw new OrderException();
+        }
+
+        return $orderDetail->hidden(['prepay_id']);
     }
 }
