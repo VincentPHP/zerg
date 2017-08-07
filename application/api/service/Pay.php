@@ -105,7 +105,7 @@ class Pay
         $wxOrderData->SetTotal_fee($totalPrice*100);
         $wxOrderData->SetBody('酱酒商贩');
         $wxOrderData->SetOpenid($openid);
-        $wxOrderData->SetNotify_url('https://www.aqphp.com');
+        $wxOrderData->SetNotify_url(config('wx.pay_back_url'));
 
         //调用统一下单 把预订单数据传过去
         return $this->getPaySignature($wxOrderData);
