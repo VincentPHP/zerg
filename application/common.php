@@ -13,7 +13,7 @@
 
 
 /**
- * 发送http请求
+ * 发送请求
  * @param $url string get 请求地址
  * @param int $httpCode 返回状态码
  * @return mixed
@@ -41,6 +41,37 @@ function curl_get($url, &$httpCode=0)
     curl_close($ch);
 
     return $file_contents;
+}
+
+
+/**
+ * 转发HTTP请求
+ * @param $url URL地址
+ * @param $rawData 发送的数据
+ * @return mixed
+ */
+function curl_post_raw($url, $rawData)
+{
+    //CURL初始化
+    $ch = curl_init();
+
+    //设置参数
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+    curl_setopt($ch, CURLOPT_PORT, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $rawData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:text'));
+
+    //发送CURL
+    $data = curl_exec($ch);
+
+    //关闭CURL资源
+    curl_close($ch);
+
+    return ($data);
 }
 
 
