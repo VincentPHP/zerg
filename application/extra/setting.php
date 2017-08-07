@@ -13,7 +13,7 @@
  */
 return [
     //图片路径前缀
-    'img_frefix'      => 'http://z.cn/images',
+    'img_frefix'      => 'http://api.cn/images',
 
     //Token过期时间
     'token_expire_in' => 7200,
